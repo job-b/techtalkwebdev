@@ -5,5 +5,5 @@ var paths = {
 };
 
 gulp.task('copy', function() {
-  gulp.src(paths.scripts).pipe(gulp.dest('build/js'))
+  gulp.src(paths.scripts).pipe(gulp.dest('build/js'));
 });
