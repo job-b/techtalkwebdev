@@ -6,6 +6,7 @@
   "repository": "https://github.com/angular/angular-phonecat",
   "license": "MIT",
   "devDependencies": {
+    "gulp" : "3.9.x"
   },
   "dependencies": {
     "angular": "1.5.x",
