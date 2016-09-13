@@ -6,7 +6,7 @@ var uglify = require('gulp-uglify');
 var lazypipe = require('lazypipe');
 
 var paths = {
-  html: ['app/**/*.html', '!*/index.html'],
+  html: ['app/**/*.html'],
   json: ['app/**/*.json'],
   images: ['app/**/*.jpg']
 };
