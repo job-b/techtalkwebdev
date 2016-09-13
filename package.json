@@ -7,8 +7,11 @@
   "license": "MIT",
   "devDependencies": {
     "gulp": "3.9.x",
-    "gulp-concat": "^2.6.0",
-    "gulp-uglify": "^2.0.0"
+    "gulp-clean-css": "^2.0.12",
+    "gulp-if": "^2.0.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "^3.1.2",
+    "lazypipe": "^1.0.1"
   },
   "dependencies": {
     "angular": "1.5.x",

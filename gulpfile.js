@@ -1,18 +1,32 @@
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
+var minifyCss = require('gulp-clean-css');
+var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
+var lazypipe = require('lazypipe');
 
 var paths = {
-  scripts: 'app/**/*.js',
+  html: ['app/**/*.html', '!*/index.html'],
+  json: ['app/**/*.json'],
+  images: ['app/**/*.jpg']
 };
 
-gulp.task('copy', function() {
-  gulp.src(paths.scripts).pipe(gulp.dest('build/js'));
+gulp.task('copyJSON', function() {
+  gulp.src(paths.json).pipe(gulp.dest('build'));
 });
 
-gulp.task('build', function() {
-  gulp.src(paths.scripts)
-  	.pipe(concat('all.min.js'))
-  	.pipe(uglify())
-  	.pipe(gulp.dest('build/js'));
+gulp.task('copyImages', function() {
+  gulp.src(paths.images).pipe(gulp.dest('build'));
+});
+
+gulp.task('copyHtml', function() {
+  gulp.src(paths.html).pipe(gulp.dest('build'));
+});
+
+gulp.task('build', ['copyHtml', 'copyJSON', 'copyImages'], function() {
+  gulp.src('app/index.html')
+  	.pipe(useref())
+  	.pipe(gulpif('*.js', uglify()))
+    .pipe(gulpif('*.css', minifyCss()))
+  	.pipe(gulp.dest('build'));
 });
