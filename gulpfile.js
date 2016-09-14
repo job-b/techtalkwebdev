@@ -36,11 +36,6 @@ gulp.task('build', ['copyHtml', 'copyJSON', 'copyImages'], function() {
 gulp.task('ESLint', function() {
 	gulp.src(paths.js)
 		.pipe(eslint())
-        // eslint.format() outputs the lint results to the console.
-        // Alternatively use eslint.formatEach() (see Docs).
-        .pipe(eslint.format()).pipe(eslint())
-        // eslint.format() outputs the lint results to the console.
-        // Alternatively use eslint.formatEach() (see Docs).
         .pipe(eslint.format())
 		.pipe(connect.reload());
 });
