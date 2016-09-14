@@ -8,7 +8,10 @@
   "devDependencies": {
     "gulp": "3.9.x",
     "gulp-clean-css": "^2.0.12",
+    "gulp-connect": "^5.0.0",
+    "gulp-eslint": "^3.0.1",
     "gulp-if": "^2.0.1",
+    "gulp-livereload": "^3.8.1",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
     "lazypipe": "^1.0.1"

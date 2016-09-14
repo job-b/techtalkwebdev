@@ -3,12 +3,14 @@ var gulpif = require('gulp-if');
 var minifyCss = require('gulp-clean-css');
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
-var lazypipe = require('lazypipe');
+var connect = require('gulp-connect')
+var eslint = require('gulp-eslint');
 
 var paths = {
   html: ['app/**/*.html'],
   json: ['app/**/*.json'],
-  images: ['app/**/*.jpg']
+  images: ['app/**/*.jpg'],
+  js: ['app/**/*.js']
 };
 
 gulp.task('copyJSON', function() {
@@ -29,4 +31,23 @@ gulp.task('build', ['copyHtml', 'copyJSON', 'copyImages'], function() {
   	.pipe(gulpif('*.js', uglify()))
     .pipe(gulpif('*.css', minifyCss()))
   	.pipe(gulp.dest('build'));
+});
+
+gulp.task('ESLint', function() {
+	gulp.src(paths.js)
+		.pipe(eslint())
+        // eslint.format() outputs the lint results to the console.
+        // Alternatively use eslint.formatEach() (see Docs).
+        .pipe(eslint.format()).pipe(eslint())
+        // eslint.format() outputs the lint results to the console.
+        // Alternatively use eslint.formatEach() (see Docs).
+        .pipe(eslint.format())
+		.pipe(connect.reload());
+});
+
+gulp.task('watch', function() {
+	connect.server({
+		livereload: true
+	});
+	gulp.watch(paths.js, ['ESLint']);
 });
